@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+  <title>To My Silly ❤️</title>
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<div id="movieToast"></div>
+
+<!-- 第1-10章背景：流星 -->
+<video id="bgVideo1" autoplay muted loop playsinline>
+  <source src="video/meteor.mp4" type="video/mp4">
+</video>
+
+<!-- 第11-12章背景：第二个背景视频 -->
+<video id="bgVideo2" autoplay muted loop playsinline>
+  <source src="video/background2.mp4" type="video/mp4">
+</video>
+
+<!-- 第13-29章背景：第三个背景视频 -->
+<video id="bgVideo3" autoplay muted loop playsinline>
+  <source src="video/background3.mp4" type="video/mp4">
+</video>
+
+<!-- 第30章最后一章：烟花（保持原来的 fireworks.mp4） -->
+<video id="fireVideo" autoplay muted loop playsinline>
+  <source src="video/fireworks.mp4" type="video/mp4">
+</video>
+
+<!-- 背景遮罩 -->
+<div id="videoOverlay"></div>
+
+<!-- 首页 -->
+<section id="cover">
+
+  <div class="cover-content">
+
+    <h2 class="small-title">
+      Happy Birthday
+    </h2>
+
+    <h1 id="name">
+      Meryem ❤️ (Silly Meryem)
+    </h1>
+
+    <p class="subtitle">
+      To My Silly
+      A Little Story About How We Found Each Other
+      Some stories begin with a plan.
+      Ours didn't.
+      It started with a message,
+      a few silly conversations,
+      and two people who were thousands of miles apart.
+    </p >
+
+    <button id="startBtn">
+      ابدأ الذكريات
+    </button>
+
+  </div>
+
+</section>
+
+<!-- 幻灯片 -->
+<section id="memory" class="hidden">
+
+  <div id="slideContainer"></div>
+
+  <div id="pageNumber"></div>
+
+  <div id="movieQuote"></div>
+
+</section>
+
+<!-- 背景音乐 -->
+<audio id="bgm" preload="auto"></audio>
+
+<div id="navButtons">
+
+  <button id="prevBtn">
+    ❮
+  </button>
+
+  <button id="nextBtn">
+    ❯
+  </button>
+
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/engine.js"></script>
+</body>
+
+</html>
