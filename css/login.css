@@ -1,0 +1,532 @@
+/* =====================================================
+   Meryem Birthday Web — Login Gate Style
+   -----------------------------------------------------
+   Romantic starry-night login screen.
+   Compatible with: login.html / js/auth.js
+   ===================================================== */
+
+/* ---------- 1. RESET / BASE ---------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+  background: #050816;
+  color: #ffffff;
+  font-family:
+          "Poppins",
+          "Segoe UI",
+          "Noto Sans Arabic",
+          Arial,
+          sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+/* ---------- 2. STARFIELD BACKGROUND ---------- */
+
+#loginBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background:
+          radial-gradient(ellipse 80% 60% at 50% -10%, rgba(124, 108, 255, 0.28), transparent 60%),
+          radial-gradient(ellipse 60% 50% at 15% 110%, rgba(255, 107, 157, 0.20), transparent 65%),
+          radial-gradient(ellipse 55% 45% at 90% 105%, rgba(255, 214, 106, 0.14), transparent 65%),
+          linear-gradient(180deg, #050816 0%, #0a0f2a 55%, #0d0a24 100%);
+}
+
+.stars,
+.stars-two {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.stars {
+  background-image:
+          radial-gradient(1px 1px at 12% 18%, rgba(255, 255, 255, 0.9), transparent),
+          radial-gradient(1px 1px at 28% 62%, rgba(255, 255, 255, 0.7), transparent),
+          radial-gradient(1.5px 1.5px at 41% 27%, rgba(255, 226, 180, 0.9), transparent),
+          radial-gradient(1px 1px at 55% 75%, rgba(255, 255, 255, 0.65), transparent),
+          radial-gradient(1.5px 1.5px at 66% 12%, rgba(255, 255, 255, 0.85), transparent),
+          radial-gradient(1px 1px at 73% 55%, rgba(214, 196, 255, 0.8), transparent),
+          radial-gradient(1.5px 1.5px at 84% 32%, rgba(255, 255, 255, 0.9), transparent),
+          radial-gradient(1px 1px at 91% 70%, rgba(255, 214, 106, 0.8), transparent),
+          radial-gradient(1px 1px at 8% 84%, rgba(255, 255, 255, 0.6), transparent),
+          radial-gradient(1px 1px at 22% 42%, rgba(255, 255, 255, 0.55), transparent),
+          radial-gradient(1.5px 1.5px at 47% 8%, rgba(255, 255, 255, 0.7), transparent),
+          radial-gradient(1px 1px at 62% 88%, rgba(255, 255, 255, 0.6), transparent);
+  animation: twinkle 4.5s ease-in-out infinite;
+}
+
+.stars-two {
+  background-image:
+          radial-gradient(1px 1px at 17% 33%, rgba(255, 255, 255, 0.55), transparent),
+          radial-gradient(1px 1px at 33% 79%, rgba(255, 226, 180, 0.6), transparent),
+          radial-gradient(1.5px 1.5px at 52% 48%, rgba(255, 255, 255, 0.75), transparent),
+          radial-gradient(1px 1px at 68% 69%, rgba(255, 255, 255, 0.5), transparent),
+          radial-gradient(1.5px 1.5px at 79% 15%, rgba(214, 196, 255, 0.7), transparent),
+          radial-gradient(1px 1px at 88% 90%, rgba(255, 255, 255, 0.55), transparent),
+          radial-gradient(1px 1px at 5% 62%, rgba(255, 255, 255, 0.5), transparent),
+          radial-gradient(1px 1px at 38% 15%, rgba(255, 214, 106, 0.6), transparent);
+  animation: twinkle 6s ease-in-out 1.2s infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* shooting star */
+
+.shooting-star {
+  position: absolute;
+  top: 12%;
+  left: -20%;
+  width: 220px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.9));
+  border-radius: 999px;
+  transform: rotate(-18deg);
+  opacity: 0;
+  animation: shoot 7s ease-in infinite;
+  pointer-events: none;
+}
+
+.shooting-star::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  transform: translateY(-50%);
+  box-shadow: 0 0 12px 4px rgba(255, 255, 255, 0.65);
+}
+
+@keyframes shoot {
+  0% {
+    transform: translateX(0) rotate(-18deg);
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  16% {
+    transform: translateX(120vw) rotate(-18deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(120vw) rotate(-18deg);
+    opacity: 0;
+  }
+}
+
+/* floating hearts */
+
+.floating-hearts {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.floating-hearts span {
+  position: absolute;
+  bottom: -40px;
+  color: rgba(255, 107, 157, 0.35);
+  font-size: 22px;
+  animation: rise linear infinite;
+}
+
+.floating-hearts span:nth-child(1) {
+  left: 8%;
+  animation-duration: 16s;
+  animation-delay: 0s;
+  font-size: 26px;
+}
+
+.floating-hearts span:nth-child(2) {
+  left: 24%;
+  animation-duration: 21s;
+  animation-delay: 3.5s;
+  font-size: 18px;
+}
+
+.floating-hearts span:nth-child(3) {
+  left: 42%;
+  animation-duration: 18s;
+  animation-delay: 7s;
+  font-size: 30px;
+}
+
+.floating-hearts span:nth-child(4) {
+  left: 58%;
+  animation-duration: 24s;
+  animation-delay: 1.8s;
+  font-size: 20px;
+}
+
+.floating-hearts span:nth-child(5) {
+  left: 74%;
+  animation-duration: 17s;
+  animation-delay: 9.5s;
+  font-size: 28px;
+}
+
+.floating-hearts span:nth-child(6) {
+  left: 88%;
+  animation-duration: 22s;
+  animation-delay: 5.2s;
+  font-size: 18px;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(28deg) scale(1.15);
+    opacity: 0;
+  }
+}
+
+/* ---------- 3. LOGIN CARD ---------- */
+
+#loginWrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.login-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 48px 40px 42px;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow:
+          0 24px 70px rgba(0, 0, 0, 0.55),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  text-align: center;
+  animation: cardIn 0.9s cubic-bezier(0.22, 0.9, 0.3, 1) both;
+}
+
+/* glowing border accent */
+
+.login-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 27px;
+  background: linear-gradient(
+          135deg,
+          rgba(255, 107, 157, 0.6),
+          rgba(124, 108, 255, 0.35) 40%,
+          rgba(255, 214, 106, 0.5) 75%,
+          rgba(255, 107, 157, 0.6)
+  );
+  z-index: -1;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: borderGlow 5s linear infinite;
+}
+
+@keyframes borderGlow {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(34px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* badge */
+
+.login-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255, 107, 157, 0.14);
+  border: 1px solid rgba(255, 107, 157, 0.35);
+  color: #ff9dbd;
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 26px;
+}
+
+.login-badge .heart {
+  display: inline-block;
+  animation: beat 1.4s ease-in-out infinite;
+  font-size: 14px;
+}
+
+@keyframes beat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.25);
+  }
+  40% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.18);
+  }
+}
+
+/* titles */
+
+.login-title {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.25;
+  background: linear-gradient(120deg, #ffd76a 0%, #ff9dbd 45%, #c3b6ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin-bottom: 14px;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.62);
+  margin-bottom: 34px;
+}
+
+/* ---------- 4. FORM ---------- */
+
+#loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field-box {
+  position: relative;
+}
+
+.field-box input {
+  width: 100%;
+  padding: 16px 52px 16px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(5, 8, 22, 0.55);
+  color: #ffffff;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  outline: none;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.field-box input::placeholder {
+  color: rgba(255, 255, 255, 0.32);
+  letter-spacing: 0.5px;
+}
+
+.field-box input:focus {
+  border-color: rgba(255, 157, 189, 0.75);
+  background: rgba(5, 8, 22, 0.75);
+  box-shadow: 0 0 0 4px rgba(255, 107, 157, 0.16), 0 0 26px rgba(255, 107, 157, 0.18);
+}
+
+/* eye toggle */
+
+#toggleEye {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+#toggleEye:hover {
+  color: #ffd76a;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* unlock button */
+
+#loginBtn {
+  position: relative;
+  margin-top: 6px;
+  padding: 16px;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #1a0f1e;
+  background: linear-gradient(135deg, #ffd76a 0%, #ff9dbd 55%, #c3b6ff 100%);
+  background-size: 200% 200%;
+  box-shadow: 0 10px 30px rgba(255, 107, 157, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.25s ease, background-position 0.6s ease, filter 0.2s ease;
+  overflow: hidden;
+}
+
+#loginBtn:hover {
+  transform: translateY(-2px);
+  background-position: 100% 50%;
+  box-shadow: 0 14px 38px rgba(255, 107, 157, 0.5);
+}
+
+#loginBtn:active {
+  transform: translateY(0) scale(0.985);
+}
+
+#loginBtn:disabled {
+  cursor: wait;
+  filter: saturate(0.55) brightness(0.85);
+  transform: none;
+}
+
+/* error message */
+
+.login-error {
+  min-height: 20px;
+  font-size: 13px;
+  color: #ff8ba7;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.login-error.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.login-card.shake {
+  animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(-10px);
+  }
+  30% {
+    transform: translateX(9px);
+  }
+  45% {
+    transform: translateX(-7px);
+  }
+  60% {
+    transform: translateX(6px);
+  }
+  75% {
+    transform: translateX(-4px);
+  }
+  90% {
+    transform: translateX(2px);
+  }
+}
+
+/* success state */
+
+.login-card.success::before {
+  opacity: 1;
+}
+
+/* footer */
+
+.login-footer {
+  margin-top: 26px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 1px;
+}
+
+.login-footer .dot {
+  color: #ff9dbd;
+}
+
+/* ---------- 5. RESPONSIVE ---------- */
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 38px 26px 34px;
+    border-radius: 22px;
+  }
+
+  .login-title {
+    font-size: 27px;
+  }
+
+  .login-subtitle {
+    font-size: 13px;
+  }
+
+  #loginBtn {
+    font-size: 15px;
+  }
+}

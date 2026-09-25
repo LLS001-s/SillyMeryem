@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+  <title>For You Only ❤️</title>
+
+  <link rel="icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="css/login.css">
+
+</head>
+
+<body>
+
+<!-- 星空背景 -->
+<div id="loginBackdrop">
+
+  <div class="stars"></div>
+
+  <div class="stars-two"></div>
+
+  <div class="shooting-star"></div>
+
+  <div class="floating-hearts">
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+    <span>❤</span>
+  </div>
+
+</div>
+
+<!-- 登录卡片 -->
+<div id="loginWrap">
+
+  <div class="login-card" id="loginCard">
+
+    <div class="login-badge">
+      <span class="heart">❤</span>
+      <span>Private</span>
+    </div>
+
+    <h1 class="login-title">
+      A Secret For You
+    </h1>
+
+    <p class="login-subtitle">
+      This little story was written only for Meryem.
+      <br>
+      Enter the secret key to open our memories.
+    </p>
+
+    <form id="loginForm" autocomplete="off">
+
+      <div class="field-box">
+        <input
+                type="password"
+                id="keyInput"
+                placeholder="Secret key..."
+                maxlength="64"
+                aria-label="Secret key">
+        <button
+                type="button"
+                id="toggleEye"
+                aria-label="Show or hide key">
+          👁
+        </button>
+      </div>
+
+      <div class="login-error" id="loginError">
+        Hmm... that key doesn't fit. Try again 💔
+      </div>
+
+      <button type="submit" id="loginBtn">
+        Unlock Our Memories
+      </button>
+
+    </form>
+
+    <div class="login-footer">
+      Made with <span class="dot">❤</span> for one silly person only
+    </div>
+
+  </div>
+
+</div>
+
+<script src="js/auth.js"></script>
+
+<script>
+  (function () {
+    "use strict";
+
+    // 已登录则直接进入
+    if (window.MBWGate && MBWGate.isUnlocked()) {
+      location.replace("index.html");
+      return;
+    }
+
+    var form = document.getElementById("loginForm");
+    var input = document.getElementById("keyInput");
+    var btn = document.getElementById("loginBtn");
+    var err = document.getElementById("loginError");
+    var card = document.getElementById("loginCard");
+    var eye = document.getElementById("toggleEye");
+
+    var ORIGINAL_BTN_TEXT = btn.textContent;
+
+    function showError() {
+      err.classList.add("show");
+      card.classList.remove("shake");
+      void card.offsetWidth;
+      card.classList.add("shake");
+      input.focus();
+      input.select();
+    }
+
+    function setLoading(loading) {
+      btn.disabled = loading;
+      btn.textContent = loading ? "Checking..." : ORIGINAL_BTN_TEXT;
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var value = input.value;
+
+      if (!value) {
+        showError();
+        return;
+      }
+
+      setLoading(true);
+
+      // 轻微延迟，让按钮动画自然
+      setTimeout(function () {
+        var ok = window.MBWGate && MBWGate.unlock(value);
+
+        if (ok) {
+          card.classList.add("success");
+          btn.textContent = "Welcome, Meryem ❤";
+          setTimeout(function () {
+            location.replace("index.html");
+          }, 700);
+        } else {
+          setLoading(false);
+          showError();
+          input.value = "";
+        }
+      }, 420);
+    });
+
+    input.addEventListener("input", function () {
+      err.classList.remove("show");
+      card.classList.remove("shake");
+    });
+
+    eye.addEventListener("click", function () {
+      var hidden = input.type === "password";
+      input.type = hidden ? "text" : "password";
+      eye.textContent = hidden ? "🙈" : "👁";
+    });
+
+    input.focus();
+  })();
+</script>
+
+</body>
+
+</html>
